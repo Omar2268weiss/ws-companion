@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<title>WS Companion</title>
+
+<!-- iOS "Add to Home Screen" behavior -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="WS Companion">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#111318">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="manifest" href="manifest.json">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ============ CARDS TAB ============ -->
+  <section class="screen" id="screen-cards">
+    <header class="topbar">
+      <h1>Cards</h1>
+      <span class="count" id="cards-count"></span>
+    </header>
+    <div class="search-row">
+      <input type="search" id="card-search" placeholder="Search name, card #, or effect text" autocomplete="off" autocapitalize="off" autocorrect="off">
+      <button class="icon-btn" id="filter-btn">⚙️</button>
+    </div>
+    <div id="filter-panel" class="filter-panel hidden">
+      <div class="filter-group">
+        <span>Color</span>
+        <div class="chip-row" id="color-chips"></div>
+      </div>
+      <div class="filter-group">
+        <span>Type</span>
+        <div class="chip-row" id="type-chips"></div>
+      </div>
+      <div class="filter-group">
+        <span>Level</span>
+        <div class="chip-row" id="level-chips"></div>
+      </div>
+      <button class="text-btn" id="clear-filters-btn">Clear all filters</button>
+    </div>
+    <div class="list" id="card-list"></div>
+  </section>
+
+  <!-- ============ DECKS TAB ============ -->
+  <section class="screen hidden" id="screen-decks">
+    <header class="topbar">
+      <h1>Decks</h1>
+      <button class="icon-btn" id="new-deck-btn">＋</button>
+    </header>
+    <div class="list" id="deck-list"></div>
+    <div class="empty-state hidden" id="deck-empty">
+      <p>No decks yet</p>
+      <button class="primary-btn" id="new-deck-btn-2">Create your first deck</button>
+    </div>
+  </section>
+
+  <!-- Deck editor (pushed screen) -->
+  <section class="screen hidden" id="screen-deck-editor">
+    <header class="topbar">
+      <button class="back-btn" id="deck-editor-back">‹ Decks</button>
+      <h1 id="deck-editor-title">Deck</h1>
+      <span></span>
+    </header>
+    <div class="deck-stats" id="deck-editor-stats"></div>
+    <div class="search-row">
+      <input type="search" id="deck-editor-search" placeholder="Find cards to add" autocomplete="off">
+    </div>
+    <h3 class="section-label">In Deck</h3>
+    <div class="list" id="deck-editor-inlist"></div>
+    <h3 class="section-label">Add Cards</h3>
+    <div class="list" id="deck-editor-addlist"></div>
+  </section>
+
+  <!-- ============ LIFE TAB ============ -->
+  <section class="screen hidden" id="screen-life">
+    <header class="topbar">
+      <h1>Life Tracker</h1>
+      <button class="text-btn" id="life-reset-btn">Reset</button>
+    </header>
+    <div class="scroll-content" id="life-content"></div>
+  </section>
+
+  <!-- ============ TURN TAB ============ -->
+  <section class="screen hidden" id="screen-turn">
+    <header class="topbar">
+      <h1>Turn Tracker</h1>
+      <button class="text-btn" id="turn-reset-btn">Reset</button>
+    </header>
+    <div class="scroll-content" id="turn-content"></div>
+  </section>
+
+  <!-- ============ SOLO PLAY TAB ============ -->
+  <section class="screen hidden" id="screen-solo">
+    <header class="topbar">
+      <button class="icon-btn hidden" id="solo-board-btn">🗂️</button>
+      <h1 id="solo-title">Solo Practice</h1>
+      <button class="text-btn hidden" id="solo-restart-btn">Restart</button>
+    </header>
+    <div class="scroll-content" id="solo-content"></div>
+  </section>
+
+  <!-- ============ BOTTOM TAB BAR ============ -->
+  <nav class="tabbar" id="tabbar">
+    <button class="tab-btn active" data-screen="cards"><span class="tab-icon">🔍</span><span>Cards</span></button>
+    <button class="tab-btn" data-screen="decks"><span class="tab-icon">📚</span><span>Decks</span></button>
+    <button class="tab-btn" data-screen="life"><span class="tab-icon">❤️</span><span>Life</span></button>
+    <button class="tab-btn" data-screen="turn"><span class="tab-icon">🔄</span><span>Turn</span></button>
+    <button class="tab-btn" data-screen="solo"><span class="tab-icon">🖥️</span><span>Solo</span></button>
+  </nav>
+
+  <!-- ============ GENERIC MODAL (card detail, board manager, move-picker, etc.) ============ -->
+  <div class="modal-backdrop hidden" id="modal-backdrop">
+    <div class="modal-sheet" id="modal-sheet"></div>
+  </div>
+
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
